@@ -1,7 +1,7 @@
-## Ambari Service for Hue
+## Ambari Service for Kylin
 
 ## Version
-   + Kylin 2.6.1
+   + Kylin 2.6.1 (With Hadoop 3.x version)
    + Ambari 2.7+
    + HDP 3.1.0
 
