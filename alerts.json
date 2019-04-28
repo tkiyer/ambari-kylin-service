@@ -1,0 +1,59 @@
+{
+  "KYLIN": {
+    "service": [],
+    "KYLIN_ALL": [
+      {
+        "name": "kylin_all_webui",
+        "label": "Kylin ALL Web UI",
+        "description": "如果无法访问Kylin ALL Web UI，则会触发此主机级告警。",
+        "interval": 1,
+        "scope": "ANY",
+        "source": {
+          "type": "PORT",
+          "uri": "{{kylin/kylin_web_port}}",
+          "default_port": 7070,
+          "reporting": {
+            "ok": {
+              "text": "TCP OK - {0:.3f}s response on port {1}"
+            },
+            "warning": {
+              "text": "TCP OK - {0:.3f}s response on port {1}",
+              "value": 1.5
+            },
+            "critical": {
+              "text": "Connection failed: {0} to {1}:{2}",
+              "value": 5
+            }
+          }
+        }
+      }
+    ],
+    "KYLIN_QUERY": [
+      {
+        "name": "kylin_query_webui",
+        "label": "Kylin QUERY Web UI",
+        "description": "如果无法访问Kylin QUERY Web UI，则会触发此主机级告警。",
+        "interval": 1,
+        "scope": "ANY",
+        "source": {
+          "type": "PORT",
+          "uri": "{{kylin/kylin_web_port}}",
+          "default_port": 7070,
+          "reporting": {
+            "ok": {
+              "text": "TCP OK - {0:.3f}s response on port {1}"
+            },
+            "warning": {
+              "text": "TCP OK - {0:.3f}s response on port {1}",
+              "value": 1.5
+            },
+            "critical": {
+              "text": "Connection failed: {0} to {1}:{2}",
+              "value": 5
+            }
+          }
+        }
+      }
+    ]
+  }
+}
