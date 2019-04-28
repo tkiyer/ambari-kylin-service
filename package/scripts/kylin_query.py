@@ -20,7 +20,10 @@ class KylinQuery(Script):
         # Remove kylin installation file
         Execute('rm -rf /tmp/kylin.tar.gz')
         # Create kylin user and group
-        Execute('group add kylin && useradd kylin -G kylin')
+        try:
+            Execute('group add kylin && useradd kylin -G kylin')
+        except:
+            print " "
         # Ensure all files owned by kylin user:group
         cmd = format("chown -R kylin:kylin {kylin_install_dir}")
         Execute(cmd)
