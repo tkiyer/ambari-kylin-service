@@ -16,12 +16,14 @@ class KylinMaster(Script):
         # download apache-kylin-2.6.1-bin-hadoop3.tar.gz
         Execute('{0} | xargs wget -O /tmp/kylin.tar.gz'.format(params.kylin_download))
         # Install kylin
-        Execute('tar -zxvf /tmp/kylin.tar.gz -C {0}'.format(params.kylin_install_dir))
+        Execute('tar -zxvf /tmp/kylin.tar.gz -C /usr/local')
         # Remove kylin installation file
         Execute('rm -rf /tmp/kylin.tar.gz')
+        # Rename kylin installation dir
+        Execute('mv /usr/local/{0} {1}'.format(params.kylin_project_name, params.kylin_install_dir))
         # Create kylin user and group
         try:
-            Execute('group add kylin && useradd kylin -G kylin')
+            Execute('groupadd kylin && useradd kylin -g kylin')
         except:
             print " "
         # Ensure all files owned by hdfs user:group
