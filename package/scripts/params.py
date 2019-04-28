@@ -9,7 +9,7 @@ service_packagedir = os.path.realpath(__file__).split('/scripts')[0]
 tmp_dir = Script.get_tmp_dir()
 
 ambari_server_hostname = config['ambariLevelParams']['ambari_server_host']
-kylin_download = os.path.join('http://', ambari_server_hostname, 'xdata-epel/centos7/7.3-000/kylin-2.6.0.tar.gz')
+kylin_download = 'cat /etc/yum.repos.d/ambari.repo | grep "baseurl" | awk -F \'=\' \'{print $2"/kylin/apache-kylin-2.6.1-bin-hadoop3.tar.gz"}\''
 
 kylin_install_dir = config['configurations']['kylin']['kylin_install_dir']
 kylin_log_dir = config['configurations']['kylin']['kylin_log_dir']

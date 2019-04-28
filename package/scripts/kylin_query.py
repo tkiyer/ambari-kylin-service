@@ -13,12 +13,13 @@ class KylinQuery(Script):
                   cd_access='a',
                   create_parents=True
                   )
-        # download kylin-2.6.0.tar.gz
-        Execute('wget {0} -O /tmp/kylin.tar.gz'.format(params.kylin_download))
+        # download apache-kylin-2.6.1-bin-hadoop3.tar.gz
+        Execute('{0} | xargs wget -O /tmp/kylin.tar.gz'.format(params.kylin_download))
         # Install kylin
         Execute('tar -zxvf /tmp/kylin.tar.gz -C {0}'.format(params.kylin_install_dir))
         # Remove kylin installation file
         Execute('rm -rf /tmp/kylin.tar.gz')
+        # Create kylin user and group
         Execute('group add kylin && useradd kylin -G kylin')
         # Ensure all files owned by kylin user:group
         cmd = format("chown -R kylin:kylin {kylin_install_dir}")
