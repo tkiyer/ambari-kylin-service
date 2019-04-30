@@ -32,12 +32,12 @@ class KylinMaster(Script):
         cmd = format("chown -R kylin:kylin {kylin_install_dir}")
         Execute(cmd)
         # Link hadoop conf
-        Execute('ln -s /usr/hdop/current/hadoop-client/core-site.xml {0}/hadoop-conf/core-site.xml'.format(params.kylin_install_dir))
-        Execute('ln -s /usr/hdop/current/hadoop-client/hdfs-site.xml {0}/hadoop-conf/hdfs-site.xml'.format(params.kylin_install_dir))
-        Execute('ln -s /usr/hdop/current/hadoop-client/yarn-site.xml {0}/hadoop-conf/yarn-site.xml'.format(params.kylin_install_dir))
-        Execute('ln -s /usr/hdop/current/hadoop-client/mapred-site.xml {0}/hadoop-conf/mapred-site.xml'.format(params.kylin_install_dir))
-        Execute('ln -s /usr/hdop/current/hbase-client/hbase-site.xml {0}/hadoop-conf/hbase-site.xml'.format(params.kylin_install_dir))
-        Execute('ln -s /usr/hdop/current/hive-client/hive-site.xml {0}/hadoop-conf/hive-site.xml'.format(params.kylin_install_dir))
+        Execute('ln -s /usr/hdp/current/hadoop-client/conf/core-site.xml {0}/hadoop-conf/core-site.xml'.format(params.kylin_install_dir))
+        Execute('ln -s /usr/hdp/current/hadoop-client/conf/hdfs-site.xml {0}/hadoop-conf/hdfs-site.xml'.format(params.kylin_install_dir))
+        Execute('ln -s /usr/hdp/current/hadoop-client/conf/yarn-site.xml {0}/hadoop-conf/yarn-site.xml'.format(params.kylin_install_dir))
+        Execute('ln -s /usr/hdp/current/hadoop-client/conf/mapred-site.xml {0}/hadoop-conf/mapred-site.xml'.format(params.kylin_install_dir))
+        Execute('ln -s /usr/hdp/current/hbase-client/conf/hbase-site.xml {0}/hadoop-conf/hbase-site.xml'.format(params.kylin_install_dir))
+        Execute('ln -s /usr/hdp/current/hive-client/conf/hive-site.xml {0}/hadoop-conf/hive-site.xml'.format(params.kylin_install_dir))
         # Initialize environment variables
         File(format("{tmp_dir}/kylin_env.rc"),
              content=Template("env.rc.j2"),
