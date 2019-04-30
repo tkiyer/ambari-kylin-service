@@ -8,7 +8,7 @@ class KylinQuery(Script):
         import params
         env.set_params(params)
         # create kylin directories
-        Directory([params.kylin_install_dir, params.kylin_log_dir, params.kylin_pid_dir],
+        Directory([params.kylin_log_dir, params.kylin_pid_dir],
                   mode=0755,
                   cd_access='a',
                   create_parents=True
