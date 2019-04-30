@@ -43,7 +43,7 @@ class KylinMaster(Script):
         # Create HDFS dir for kylin
         Execute('hadoop fs -mkdir -p /kylin', user='hdfs')
         Execute('hadoop fs -chown kylin:kylin /kylin', user='hdfs')
-        
+
         # Initialize environment variables
         File(format("{tmp_dir}/kylin_env.rc"),
              content=Template("env.rc.j2"),
@@ -62,7 +62,7 @@ class KylinMaster(Script):
              group='kylin',
              content=kylin_properties)
         Execute(format("chown -R kylin:kylin {kylin_log_dir} {kylin_pid_dir}"))
-        cmd = format("sh {kylin_install_dir}/bin/check-env.sh")
+        cmd = format(". {tmp_dir}/kylin_env.rc;{kylin_install_dir}/bin/check-env.sh")
         Execute(cmd, user="kylin")
         Execute("hadoop fs -mkdir -p /kylin/kylin_metadata", user="kylin")
         Execute("hadoop fs -chmod -R 777 /kylin/kylin_metadata", user="kylin")
