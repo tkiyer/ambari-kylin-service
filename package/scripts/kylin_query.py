@@ -21,6 +21,8 @@ class KylinQuery(Script):
         Execute('rm -rf /tmp/kylin.tar.gz')
         # Rename kylin installation dir
         Execute('mv /usr/local/{0} {1}'.format(params.kylin_project_name, params.kylin_install_dir))
+        # Create kylin conf dir
+        Exeucte('mkdir -p {0}/conf'.format(params.kylin_install_dir))
         # Create Hadoop conf dir
         Execute('mkdir -p {0}/hadoop-conf'.format(params.kylin_install_dir))
         # Create kylin user and group
