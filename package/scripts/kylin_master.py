@@ -31,6 +31,7 @@ class KylinMaster(Script):
         # Ensure all files owned by hdfs user:group
         cmd = format("chown -R kylin:kylin {kylin_install_dir}")
         Execute(cmd)
+
         # Link hadoop conf
         Execute('ln -s /usr/hdp/current/hadoop-client/conf/core-site.xml {0}/hadoop-conf/core-site.xml'.format(params.kylin_install_dir))
         Execute('ln -s /usr/hdp/current/hadoop-client/conf/hdfs-site.xml {0}/hadoop-conf/hdfs-site.xml'.format(params.kylin_install_dir))
@@ -38,6 +39,11 @@ class KylinMaster(Script):
         Execute('ln -s /usr/hdp/current/hadoop-client/conf/mapred-site.xml {0}/hadoop-conf/mapred-site.xml'.format(params.kylin_install_dir))
         Execute('ln -s /usr/hdp/current/hbase-client/conf/hbase-site.xml {0}/hadoop-conf/hbase-site.xml'.format(params.kylin_install_dir))
         Execute('ln -s /usr/hdp/current/hive-client/conf/hive-site.xml {0}/hadoop-conf/hive-site.xml'.format(params.kylin_install_dir))
+
+        # Create HDFS dir for kylin
+        Execute('hadoop fs -mkdir -p /kylin', user='hdfs')
+        Execute('hadoop fs -chown kylin:kylin /kylin', user='hdfs')
+        
         # Initialize environment variables
         File(format("{tmp_dir}/kylin_env.rc"),
              content=Template("env.rc.j2"),

@@ -38,6 +38,11 @@ class KylinQuery(Script):
         Execute('ln -s /usr/hdp/current/hadoop-client/conf/mapred-site.xml {0}/hadoop-conf/mapred-site.xml'.format(params.kylin_install_dir))
         Execute('ln -s /usr/hdp/current/hbase-client/conf/hbase-site.xml {0}/hadoop-conf/hbase-site.xml'.format(params.kylin_install_dir))
         Execute('ln -s /usr/hdp/current/hive-client/conf/hive-site.xml {0}/hadoop-conf/hive-site.xml'.format(params.kylin_install_dir))
+
+        # Create HDFS dir for kylin
+        Execute('hadoop fs -mkdir -p /kylin', user='hdfs')
+        Execute('hadoop fs -chown kylin:kylin /kylin', user='hdfs')
+        
         # Initialize environment variables
         File(format("{tmp_dir}/kylin_env.rc"),
              content=Template("env.rc.j2"),
@@ -55,7 +60,7 @@ class KylinQuery(Script):
              group='kylin',
              content=kylin_properties)
         Execute(format("chown -R kylin:kylin {kylin_log_dir} {kylin_pid_dir}"))
-        cmd = format("sh {kylin_install_dir}/bin/check-env.sh")
+        cmd = format(". {tmp_dir}/kylin_env.rc;{kylin_install_dir}/bin/check-env.sh")
         Execute(cmd, user="kylin")
         Execute("hadoop fs -mkdir -p /kylin/kylin_metadata", user="kylin")
         Execute("hadoop fs -chmod -R 777 /kylin/kylin_metadata", user="kylin")
