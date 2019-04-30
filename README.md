@@ -7,7 +7,7 @@
 
 ## Setup
 
-#### Deploy Hue on existing cluster
+#### Deploy Kylin on existing cluster
 
 - To download the kylin service folder, run below
 ```
