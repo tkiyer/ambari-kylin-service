@@ -15,9 +15,9 @@
         "component_name": "KYLIN_ALL",
         "url": "%@://%@:%@/kylin/",
         "port": {
-          "http_property": "nginx_port",
+          "http_property": "kylin_web_port",
           "http_default_port": "7070",
-          "https_property": "nginx_port",
+          "https_property": "kylin_web_port",
           "https_default_port": "7070",
           "regex": "^(\\d+)$",
           "site": "kylin_all"

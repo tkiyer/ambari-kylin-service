@@ -344,7 +344,7 @@ kylin.query.cache-enabled=true
 #
 ## Hadoop conf folder, will export this as "HADOOP_CONF_DIR" to run spark-submit
 ## This must contain site xmls of core, yarn, hive, and hbase in one folder
-kylin.env.hadoop-conf-dir=/etc/hadoop/conf
+kylin.env.hadoop-conf-dir=/usr/local/kylin/hadoop-conf
 #
 ## Estimate the RDD partition numbers
 kylin.engine.spark.rdd-partition-cut-mb=10

@@ -21,6 +21,8 @@ class KylinQuery(Script):
         Execute('rm -rf /tmp/kylin.tar.gz')
         # Rename kylin installation dir
         Execute('mv /usr/local/{0} {1}'.format(params.kylin_project_name, params.kylin_install_dir))
+        # Create Hadoop conf dir
+        Execute('mkdir -p {0}/hadoop-conf'.format(params.kylin_install_dir))
         # Create kylin user and group
         try:
             Execute('groupadd kylin && useradd kylin -g kylin')
@@ -29,6 +31,13 @@ class KylinQuery(Script):
         # Ensure all files owned by kylin user:group
         cmd = format("chown -R kylin:kylin {kylin_install_dir}")
         Execute(cmd)
+        # Link hadoop conf
+        Execute('ln -s /usr/hdop/current/hadoop-client/core-site.xml {0}/hadoop-conf/core-site.xml'.format(params.kylin_install_dir))
+        Execute('ln -s /usr/hdop/current/hadoop-client/hdfs-site.xml {0}/hadoop-conf/hdfs-site.xml'.format(params.kylin_install_dir))
+        Execute('ln -s /usr/hdop/current/hadoop-client/yarn-site.xml {0}/hadoop-conf/yarn-site.xml'.format(params.kylin_install_dir))
+        Execute('ln -s /usr/hdop/current/hadoop-client/mapred-site.xml {0}/hadoop-conf/mapred-site.xml'.format(params.kylin_install_dir))
+        Execute('ln -s /usr/hdop/current/hbase-client/hbase-site.xml {0}/hadoop-conf/hbase-site.xml'.format(params.kylin_install_dir))
+        Execute('ln -s /usr/hdop/current/hive-client/hive-site.xml {0}/hadoop-conf/hive-site.xml'.format(params.kylin_install_dir))
         # Initialize environment variables
         File(format("{tmp_dir}/kylin_env.rc"),
              content=Template("env.rc.j2"),
