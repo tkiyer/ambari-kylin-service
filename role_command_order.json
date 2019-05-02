@@ -1,0 +1,7 @@
+{
+  "general_deps" : {
+    "_comment" : "dependencies for KYLIN",
+    "KYLIN_MASTER-START": ["HBASE_MASTER-START", "HIVE_SERVER-START"],
+    "KYLIN_QUERY-START": ["KYLIN_MASTER-START", "HBASE_MASTER-START", "HIVE_SERVER-START"]
+  }
+}

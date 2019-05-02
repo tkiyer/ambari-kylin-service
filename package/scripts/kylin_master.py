@@ -41,8 +41,8 @@ class KylinMaster(Script):
         Execute('ln -s /usr/hdp/current/hive-client/conf/hive-site.xml {0}/hadoop-conf/hive-site.xml'.format(params.kylin_install_dir))
 
         # Create HDFS dir for kylin
-        Execute('hadoop fs -mkdir -p /kylin', user='hdfs')
-        Execute('hadoop fs -chown kylin:kylin /kylin', user='hdfs')
+        Execute('hadoop fs -mkdir -p {0}'.format(params.kylin_env_hdfs_working_dir), user='hdfs')
+        Execute('hadoop fs -chown kylin:kylin {0}'.format(params.kylin_env_hdfs_working_dir), user='hdfs')
 
     def configure(self, env):
         import params
@@ -60,11 +60,20 @@ class KylinMaster(Script):
              group='kylin',
              content=kylin_env_header)
 
+        kylin_check_env_sh = InlineTemplate(params.kylin_check_env_sh)
+        File(format("{kylin_install_dir}/bin/check-env.sh"),
+             owner='kylin',
+             group='kylin',
+             content=kylin_check_env_sh)
+
         Execute(format("chown -R kylin:kylin {kylin_log_dir} {kylin_pid_dir}"))
         cmd = format("sh {kylin_install_dir}/bin/check-env.sh")
         Execute(cmd, user="kylin")
         Execute("hadoop fs -mkdir -p /kylin/kylin_metadata", user="kylin")
         Execute("hadoop fs -chmod -R 777 /kylin/kylin_metadata", user="kylin")
+
+        Execute("hadoop fs -mkdir -p {0}".format(params.kylin_engine_spark_conf_spark_eventLog_dir), user="kylin")
+        Execute("hadoop fs -mkdir -p {0}".format(params.kylin_engine_spark_conf_spark_history_fs_logDirectory), user="kylin")
 
     def start(self, env):
         import params

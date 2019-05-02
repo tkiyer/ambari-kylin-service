@@ -39,6 +39,23 @@
         <description>Whether cross-domain access is supported, the default is TRUE</description>
     </property>
 
+    <property>
+        <name>kylin_env_hdfs_working_dir</name>
+        <value>/kylin</value>
+        <description>Whether cross-domain access is supported, the default is TRUE</description>
+    </property>
+
+    <property>
+        <name>kylin_engine_spark_conf_spark_eventLog_dir</name>
+        <value>/kylin/spark-history</value>
+        <description>Whether cross-domain access is supported, the default is TRUE</description>
+    </property>
+    
+    <property>
+        <name>kylin_engine_spark_conf_spark_history_fs_logDirectory</name>
+        <value>/kylin/spark-history</value>
+        <description>Whether cross-domain access is supported, the default is TRUE</description>
+    </property>
 
     <property>
         <name>kylin_properties</name>
@@ -77,7 +94,7 @@ kylin.metadata.sync-retries=3
 #
 ## Working folder in HDFS, better be qualified absolute path, make sure user has the right permission to
 ## this directory
-kylin.env.hdfs-working-dir=/kylin
+kylin.env.hdfs-working-dir={{kylin_env_hdfs_working_dir}}
 #
 ## DEV|QA|PROD. DEV will turn on some dev features, QA and PROD has no difference in terms of functions.
 kylin.env=PROD
@@ -375,8 +392,8 @@ kylin.engine.spark-conf.spark.hadoop.dfs.replication=2
 kylin.engine.spark-conf.spark.hadoop.mapreduce.output.fileoutputformat.compress=true
 kylin.engine.spark-conf.spark.hadoop.mapreduce.output.fileoutputformat.compress.codec=org.apache.hadoop.io.compress.DefaultCodec
 kylin.engine.spark-conf.spark.io.compression.codec=org.apache.spark.io.SnappyCompressionCodec
-kylin.engine.spark-conf.spark.eventLog.dir=hdfs\:///kylin/spark-history
-kylin.engine.spark-conf.spark.history.fs.logDirectory=hdfs\:///kylin/spark-history
+kylin.engine.spark-conf.spark.eventLog.dir=/kylin/spark-history
+kylin.engine.spark-conf.spark.history.fs.logDirectory=/kylin/spark-history
 kylin.engine.spark-conf.spark.hadoop.yarn.timeline-service.enabled=false
 
 #

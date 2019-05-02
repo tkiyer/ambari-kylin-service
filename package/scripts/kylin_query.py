@@ -39,10 +39,6 @@ class KylinQuery(Script):
         Execute('ln -s /usr/hdp/current/hbase-client/conf/hbase-site.xml {0}/hadoop-conf/hbase-site.xml'.format(params.kylin_install_dir))
         Execute('ln -s /usr/hdp/current/hive-client/conf/hive-site.xml {0}/hadoop-conf/hive-site.xml'.format(params.kylin_install_dir))
 
-        # Create HDFS dir for kylin
-        Execute('hadoop fs -mkdir -p /kylin', user='hdfs')
-        Execute('hadoop fs -chown kylin:kylin /kylin', user='hdfs')
-
     def configure(self, env):
         import params
         env.set_params(params)
@@ -58,18 +54,21 @@ class KylinQuery(Script):
              group='kylin',
              content=kylin_env_header)
 
+        kylin_check_env_sh = InlineTemplate(params.kylin_check_env_sh)
+        File(format("{kylin_install_dir}/bin/check-env.sh"),
+             owner='kylin',
+             group='kylin',
+             content=kylin_check_env_sh)
+
         Execute(format("chown -R kylin:kylin {kylin_log_dir} {kylin_pid_dir}"))
         cmd = format("sh {kylin_install_dir}/bin/check-env.sh")
         Execute(cmd, user="kylin")
-        Execute("hadoop fs -mkdir -p /kylin/kylin_metadata", user="kylin")
-        Execute("hadoop fs -chmod -R 777 /kylin/kylin_metadata", user="kylin")
 
     def start(self, env):
         import params
         env.set_params(params)
         self.configure(env)
-        cmd = format(
-            "{kylin_install_dir}/bin/kylin.sh start;cp -rf {kylin_install_dir}/pid {kylin_pid_file}")
+        cmd = format("{kylin_install_dir}/bin/kylin.sh start;cp -rf {kylin_install_dir}/pid {kylin_pid_file}")
         Execute(cmd, user='kylin')
 
     def stop(self, env):

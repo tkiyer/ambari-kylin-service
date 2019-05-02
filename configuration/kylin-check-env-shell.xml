@@ -4,11 +4,12 @@
 <configuration supports_adding_forbidden="true">
     
     <property>
-        <name>kylin_env_header</name>
-        <description>This is the template for header.sh file</description>
+        <name>kylin_check_env_sh</name>
+        <description>This is the template for check-env.sh file</description>
         <value>
 <![CDATA[
 #!/bin/bash
+
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -26,53 +27,47 @@
 # limitations under the License.
 #
 
-# source me
+source $(cd -P -- "$(dirname -- "$0")" && pwd -P)/header.sh
 
-KYLIN_HOME={{kylin_install_dir}}
-JAVA_HOME={{java_home}}
-SPARK_HOME=/usr/hdp/current/spark2-client
-HIVE_CONF=/usr/hdp/current/hive-client/conf
+## ${dir} assigned to $KYLIN_HOME/bin in header.sh
+source ${dir}/find-hadoop-conf-dir.sh
 
-export PATH=$PATH:$JAVA_HOME/bin
-
-verbose=${verbose:-""}
-
-while getopts ":v" opt; do
-    case $opt in
-        v)
-            echo "Turn on verbose mode." >&2
-            verbose=true
-            ;;
-        \?)
-            echo "Invalid option: -$OPTARG" >&2
-            ;;
-    esac
-done
-
-if [[ "$dir" == "" ]]
-then
-	dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
-	
-	# set KYLIN_HOME with consideration for multiple instances that are on the same node
-	KYLIN_HOME=${KYLIN_HOME:-"${dir}/../"}
-	export KYLIN_HOME=`cd "$KYLIN_HOME"; pwd`
-	dir="$KYLIN_HOME/bin"
-	
-	function quit {
-		echo "$@"
-		exit 1
-	}
-	
-	function verbose {
-		if [[ -n "$verbose" ]]; then
-			echo "$@"
-		fi
-	}
-
-	function setColor() {
-        echo -e "\033[$1m$2\033[0m"
-    }
+if [ -z "${kylin_hadoop_conf_dir}" ]; then
+    hadoop_conf_param=
+else
+    hadoop_conf_param="--config ${kylin_hadoop_conf_dir}"
 fi
+
+if [ -z "$KYLIN_HOME" ]
+then
+    quit 'Please make sure KYLIN_HOME has been set'
+else
+    echo "KYLIN_HOME is set to ${KYLIN_HOME}"
+fi
+
+if [ -z "$(command -v hbase version)" ]
+then
+    quit "Please make sure the user has the privilege to run hbase shell"
+fi
+
+if [ -z "$(command -v hive --version)" ]
+then
+    quit "Please make sure the user has the privilege to run hive shell"
+fi
+
+if [ -z "$(command -v hadoop version)" ]
+then
+    quit "Please make sure the user has the privilege to run hadoop shell"
+fi
+
+WORKING_DIR=`bash $KYLIN_HOME/bin/get-properties.sh kylin.env.hdfs-working-dir`
+if [ -z "$WORKING_DIR" ]
+then
+    quit "Please set kylin.env.hdfs-working-dir in kylin.properties"
+fi
+
+${KYLIN_HOME}/bin/check-port-availability.sh ||  exit 1;
+
 ]]>
         </value>
         <value-attributes>

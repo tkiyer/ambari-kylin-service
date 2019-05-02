@@ -49,6 +49,7 @@
             <configuration-dependencies>
                 <config-type>kylin</config-type>
                 <config-type>kylin-env</config-type>
+                <config-type>kylin-check-env-shell</config-type>
             </configuration-dependencies>
 
             <quickLinksConfigurations>

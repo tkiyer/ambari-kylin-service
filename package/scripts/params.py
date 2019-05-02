@@ -19,9 +19,17 @@ kylin_pid_file = format("{kylin_pid_dir}/kylin.pid")
 
 kylin_web_port = config['configurations']['kylin']['kylin_web_port']
 
+kylin_env_hdfs_working_dir = config['configurations']['kylin']['kylin_env_hdfs_working_dir']
+
+kylin_engine_spark_conf_spark_eventLog_dir = config['configurations']['kylin']['kylin_engine_spark_conf_spark_eventLog_dir']
+
+kylin_engine_spark_conf_spark_history_fs_logDirectory = config['configurations']['kylin']['kylin_engine_spark_conf_spark_history_fs_logDirectory']
+
 kylin_properties = config['configurations']['kylin']['kylin_properties']
 
 kylin_env_header = config['configurations']['kylin-env']['kylin_env_header']
+
+kylin_check_env_sh = config['configurations']['kylin-check-env-shell']['kylin_check_env_sh']
 
 # kylin web timezone
 kylin_web_timezone = config['configurations']['kylin']['kylin_web_timezone']
