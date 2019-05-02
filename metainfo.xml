@@ -19,9 +19,6 @@
                         <scriptType>PYTHON</scriptType>
                         <timeout>600</timeout>
                     </commandScript>
-                    <configuration-dependencies>
-                        <config-type>kylin</config-type>
-                    </configuration-dependencies>
                 </component>
                 <component>
                     <name>KYLIN_QUERY</name>
@@ -34,10 +31,6 @@
                         <scriptType>PYTHON</scriptType>
                         <timeout>600</timeout>
                     </commandScript>
-                    <configuration-dependencies>
-                        <config-type>kylin</config-type>
-                        <config-type>kylin-env</config-type>
-                    </configuration-dependencies>
                 </component>
             </components>
 
@@ -52,6 +45,11 @@
                     <osFamily>any</osFamily>
                 </osSpecific>
             </osSpecifics>
+
+            <configuration-dependencies>
+                <config-type>kylin</config-type>
+                <config-type>kylin-env</config-type>
+            </configuration-dependencies>
 
             <quickLinksConfigurations>
                 <quickLinksConfiguration>
