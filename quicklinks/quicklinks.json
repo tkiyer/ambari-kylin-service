@@ -9,10 +9,10 @@
     },
     "links": [
       {
-        "name": "kylin_job_ui",
-        "label": "KYLIN JOB UI",
+        "name": "kylin_master_ui",
+        "label": "KYLIN MASTER UI",
         "requires_user_name": "false",
-        "component_name": "KYLIN_ALL",
+        "component_name": "KYLIN_MASTER",
         "url": "%@://%@:%@/kylin/",
         "port": {
           "http_property": "kylin_web_port",
@@ -20,7 +20,7 @@
           "https_property": "kylin_web_port",
           "https_default_port": "7070",
           "regex": "^(\\d+)$",
-          "site": "kylin_all"
+          "site": "kylin_master"
         }
       }
     ]
