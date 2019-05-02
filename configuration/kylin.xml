@@ -139,7 +139,7 @@ kylin.source.hive.client=beeline
 kylin.source.hive.beeline-shell=beeline
 #
 ## Parameters for beeline client, only necessary if hive client is beeline
-kylin.source.hive.beeline-params=-n hive --hiveconf hive.security.authorization.sqlstd.confwhitelist.append='mapreduce.job.*|dfs.*' -u jdbc:hive2://{{hive_server_host}}:{{hive_server_port}}
+kylin.source.hive.beeline-params=-n hive -u jdbc:hive2://{{hive_server_host}}:{{hive_server_port}}
 #
 ## While hive client uses above settings to read hive table metadata,
 ## table operations can go through a separate SparkSQL command line, given SparkSQL connects to the same

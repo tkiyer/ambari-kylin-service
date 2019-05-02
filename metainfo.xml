@@ -9,8 +9,8 @@
             <version>2.6.1</version>
             <components>
                 <component>
-                    <name>KYLIN_ALL</name>
-                    <displayName>Kylin All</displayName>
+                    <name>KYLIN_MASTER</name>
+                    <displayName>Kylin Master</displayName>
                     <category>MASTER</category>
                     <cardinality>1</cardinality>
                     <!--<versionAdvertised>true</versionAdvertised>-->
@@ -36,6 +36,7 @@
                     </commandScript>
                     <configuration-dependencies>
                         <config-type>kylin</config-type>
+                        <config-type>kylin-env</config-type>
                     </configuration-dependencies>
                 </component>
             </components>

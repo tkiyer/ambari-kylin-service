@@ -61,8 +61,15 @@ class KylinMaster(Script):
              owner='kylin',
              group='kylin',
              content=kylin_properties)
+
+        kylin_env_header = InlineTemplate(params.kylin_env_header)
+        File(format("{kylin_install_dir}/bin/header.sh"),
+             owner='kylin',
+             group='kylin',
+             content=kylin_env_header)
+
         Execute(format("chown -R kylin:kylin {kylin_log_dir} {kylin_pid_dir}"))
-        cmd = format(". {tmp_dir}/kylin_env.rc;{kylin_install_dir}/bin/check-env.sh")
+        cmd = format("sh {kylin_install_dir}/bin/check-env.sh")
         Execute(cmd, user="kylin")
         Execute("hadoop fs -mkdir -p /kylin/kylin_metadata", user="kylin")
         Execute("hadoop fs -chmod -R 777 /kylin/kylin_metadata", user="kylin")
@@ -72,7 +79,7 @@ class KylinMaster(Script):
         env.set_params(params)
         self.configure(env)
         cmd = format(
-            ". {tmp_dir}/kylin_env.rc;{kylin_install_dir}/bin/kylin.sh start;cp -rf {kylin_install_dir}/pid {kylin_pid_file}")
+            "{kylin_install_dir}/bin/kylin.sh start;cp -rf {kylin_install_dir}/pid {kylin_pid_file}")
         Execute(cmd, user='kylin')
 
     def stop(self, env):

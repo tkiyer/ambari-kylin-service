@@ -21,6 +21,8 @@ kylin_web_port = config['configurations']['kylin']['kylin_web_port']
 
 kylin_properties = config['configurations']['kylin']['kylin_properties']
 
+kylin_env_header = config['configurations']['kylin-env']['kylin_env_header']
+
 # kylin web timezone
 kylin_web_timezone = config['configurations']['kylin']['kylin_web_timezone']
 # kylin_web_cross_domain_enabled
