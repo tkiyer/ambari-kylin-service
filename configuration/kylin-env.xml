@@ -2,24 +2,6 @@
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 
 <configuration supports_adding_forbidden="true">
-
-    <property>
-        <name>JAVA_HOME</name>
-        <value>/usr/jdk64/jdk1.8.0_112</value>
-        <description>Kylin install directory</description>
-    </property>
-
-    <property>
-        <name>SPARK_HOME</name>
-        <value>/usr/hdp/current/spark2-client</value>
-        <description>Spark2 client directory</description>
-    </property>
-
-    <property>
-        <name>HIVE_CONF</name>
-        <value>/usr/hdp/current/hive-client/conf</value>
-        <description>Hive conf directory</description>
-    </property>
     
     <property>
         <name>kylin_env_header</name>
@@ -47,9 +29,9 @@
 # source me
 
 KYLIN_HOME={{kylin_install_dir}}
-JAVA_HOME={{JAVA_HOME}}
-SPARK_HOME={{SPARK_HOME}}
-HIVE_CONF={{HIVE_CONF}}
+JAVA_HOME={{java_home}}
+SPARK_HOME=/usr/hdp/current/spark2-client
+HIVE_CONF=/usr/hdp/current/hive-client/conf
 
 export PATH=$PATH:$JAVA_HOME/bin
 

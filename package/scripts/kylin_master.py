@@ -44,14 +44,6 @@ class KylinMaster(Script):
         Execute('hadoop fs -mkdir -p /kylin', user='hdfs')
         Execute('hadoop fs -chown kylin:kylin /kylin', user='hdfs')
 
-        # Initialize environment variables
-        File(format("{tmp_dir}/kylin_env.rc"),
-             content=Template("env.rc.j2"),
-             owner='kylin',
-             group='kylin',
-             mode=0o700
-             )
-
     def configure(self, env):
         import params
         params.server_mode = "all"

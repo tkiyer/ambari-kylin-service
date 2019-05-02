@@ -34,8 +34,8 @@ else:
 
 current_host_name = config['agentLevelParams']['hostname']
 server_mode = "query"
-server_masters = config['clusterHostInfo']['kylin_all_hosts'][0]
-server_clusters_arr = config['clusterHostInfo']['kylin_all_hosts'] + (
+server_masters = config['clusterHostInfo']['kylin_master_hosts'][0]
+server_clusters_arr = config['clusterHostInfo']['kylin_master_hosts'] + (
     config['clusterHostInfo'].has_key('kylin_query_hosts') and config['clusterHostInfo']['kylin_query_hosts'] or [])
 
 server_clusters = ','.join(i + ":" + kylin_web_port for i in server_clusters_arr)
@@ -45,3 +45,5 @@ kylin_servers = ';'.join("server " + i + ":" + kylin_web_port for i in server_cl
 hive_server_host = default("/clusterHostInfo/hive_server_hosts", ['localhost'])[0]
 hive_server_port = default('/configurations/hive-site/hive.server2.thrift.port', "10000")
 
+# java home
+java_home = config['ambariLevelParams']['java_home']

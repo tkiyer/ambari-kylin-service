@@ -1,7 +1,7 @@
 {
   "KYLIN": {
     "service": [],
-    "KYLIN_ALL": [
+    "KYLIN_MASTER": [
       {
         "name": "kylin_master_webui",
         "label": "Kylin Master Web UI",
