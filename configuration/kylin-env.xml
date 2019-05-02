@@ -25,6 +25,7 @@
         <name>kylin_env_header</name>
         <description>This is the template for kylin.properties file</description>
         <value>
+<![CDATA[
 #!/bin/bash
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
@@ -46,6 +47,7 @@
 # source me
 
 KYLIN_HOME={{kylin_install_dir}}
+JAVA_HOME={{JAVA_HOME}}
 SPARK_HOME={{SPARK_HOME}}
 HIVE_CONF={{HIVE_CONF}}
 
@@ -89,6 +91,7 @@ then
         echo -e "\033[$1m$2\033[0m"
     }
 fi
+]]>
         </value>
         <value-attributes>
             <type>content</type>

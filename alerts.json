@@ -3,9 +3,9 @@
     "service": [],
     "KYLIN_ALL": [
       {
-        "name": "kylin_all_webui",
-        "label": "Kylin ALL Web UI",
-        "description": "如果无法访问Kylin ALL Web UI，则会触发此主机级告警。",
+        "name": "kylin_master_webui",
+        "label": "Kylin Master Web UI",
+        "description": "如果无法访问Kylin Master Web UI，则会触发此主机级告警。",
         "interval": 1,
         "scope": "ANY",
         "source": {
