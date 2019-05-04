@@ -6,10 +6,7 @@
     <property>
         <name>kylin_check_env_sh</name>
         <description>This is the template for check-env.sh file</description>
-        <value>
-<![CDATA[
-#!/bin/bash
-
+        <value><![CDATA[#!/bin/bash
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with

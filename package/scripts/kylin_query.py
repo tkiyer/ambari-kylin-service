@@ -74,6 +74,12 @@ class KylinQuery(Script):
              group='kylin',
              content=kylin_tomcat_conf)
 
+        kylin_tomcat_context_conf = InlineTemplate(params.kylin_tomcat_context_conf)
+        File(format("{kylin_install_dir}/tomcat/conf/context.xml"),
+             owner='kylin',
+             group='kylin',
+             content=kylin_tomcat_context_conf)
+             
         Execute(format("chown -R kylin:kylin {kylin_log_dir} {kylin_pid_dir}"))
         cmd = format("sh {kylin_install_dir}/bin/check-env.sh")
         Execute(cmd, user="kylin")

@@ -52,6 +52,7 @@
                 <config-type>kylin-check-env-shell</config-type>
                 <config-type>kylin-hive-job</config-type>
                 <config-type>kylin-tomcat</config-type>
+                <config-type>kylin-tomcat-context</config-type>
             </configuration-dependencies>
 
             <quickLinksConfigurations>
