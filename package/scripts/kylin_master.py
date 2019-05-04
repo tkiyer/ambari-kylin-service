@@ -68,7 +68,7 @@ class KylinMaster(Script):
         
         XmlConfig(
             "kylin_hive_conf.xml",
-            conf_dir="{kylin_install_dir}/conf",
+            conf_dir=format("{kylin_install_dir}/conf"),
             configurations=params.config['configurations']['kylin-hive-job'],
             owner="kylin",
             group="kylin"
