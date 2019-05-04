@@ -31,6 +31,8 @@ kylin_env_header = config['configurations']['kylin-env']['kylin_env_header']
 
 kylin_check_env_sh = config['configurations']['kylin-check-env-shell']['kylin_check_env_sh']
 
+kylin_tomcat_conf = config['configurations']['kylin-tomcat']['kylin_tomcat_conf']
+
 # kylin web timezone
 kylin_web_timezone = config['configurations']['kylin']['kylin_web_timezone']
 # kylin_web_cross_domain_enabled

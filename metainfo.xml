@@ -50,6 +50,8 @@
                 <config-type>kylin</config-type>
                 <config-type>kylin-env</config-type>
                 <config-type>kylin-check-env-shell</config-type>
+                <config-type>kylin-hive-job</config-type>
+                <config-type>kylin-tomcat</config-type>
             </configuration-dependencies>
 
             <quickLinksConfigurations>
