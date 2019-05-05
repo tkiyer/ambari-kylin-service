@@ -42,7 +42,7 @@ else
 
     spark_version="2.3.2"
 
-    echo "No binary file found, start to download package to ${spark_package_dir}"
+    echo "No binary file found, from {{spark_download_base_url}}/spark-${spark_version}-bin-hadoop2.7.tgz start to download package to ${spark_package_dir}"
     wget {{spark_download_base_url}}/spark-${spark_version}-bin-hadoop2.7.tgz -O ${spark_package_dir}/spark-${spark_version}-bin-hadoop2.7.tgz || echo "Download spark failed"
 
     tar -zxvf ${spark_package_dir}/spark-${spark_version}-bin-hadoop2.7.tgz  || { exit 1; }
