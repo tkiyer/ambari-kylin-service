@@ -1,0 +1,29 @@
+{
+  "services": [
+    {
+      "name": "KYLIN",
+      "identities": [
+        {
+          "name": "kylin_kerberos",
+          "principal": {
+            "value": "kylin/_HOST@${realm}",
+            "type": "service",
+            "configuration": "kylin/kerberos_kylin_principal"
+          },
+          "keytab": {
+            "file": "${keytab_dir}/kylin.service.keytab",
+            "owner": {
+              "name": "kylin",
+              "access": "r"
+            },
+            "group": {
+              "name": "kylin",
+              "access": ""
+            },
+            "configuration": "kylin/kerberos_kylin_keytab"
+          }
+        }
+      ]
+    }
+  ]
+}

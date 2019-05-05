@@ -63,3 +63,9 @@ hive_server_port = default('/configurations/hive-site/hive.server2.thrift.port',
 
 # java home
 java_home = config['ambariLevelParams']['java_home']
+
+security_enabled = config['configurations']['cluster-env']['security_enabled']
+
+if security_enabled:
+  kylin_principal = config['configurations']['kylin']['kerberos_kylin_principal'].replace('_HOST', current_host_name)
+  kylin_keytab = config['configurations']['kylin']['kerberos_kylin_keytab']

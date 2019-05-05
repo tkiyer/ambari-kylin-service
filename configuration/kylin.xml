@@ -3,62 +3,87 @@
 
 <configuration>
 
+<!-- Kerberos configuration properties -->
+  <property>
+    <name>kerberos_kylin_keytab</name>
+    <value/>
+    <display-name>Kerberos Kylin Keytab</display-name>
+    <description>Path to Kylin's Kerberos keytab file.</description>
+  </property>
+
+  <property>
+    <name>kerberos_kylin_principal</name>
+    <value/>
+    <display-name>Kerberos Kylin Principal</display-name>
+    <description>Kerberos principal name for Kylin</description>
+  </property>
+
     <property>
         <name>kylin_install_dir</name>
+        <display-name>Kylin Install Dir</display-name>
         <value>/usr/local/kylin</value>
         <description>Kylin install directory</description>
     </property>
 
     <property>
         <name>kylin_log_dir</name>
+        <display-name>Kylin Log Dir</display-name>
         <value>/data/log/kylin</value>
         <description>Kylin log directory</description>
     </property>
 
     <property>
         <name>kylin_web_port</name>
+        <display-name>Kylin Web Port</display-name>
         <value>7070</value>
         <description>Kylin web port</description>
     </property>
 
     <property>
         <name>kylin_pid_dir</name>
+        <display-name>Kylin Pid Dir</display-name>
         <value>/var/run/kylin</value>
         <description>Kylin pid directory</description>
     </property>
 
     <property>
         <name>kylin_web_timezone</name>
+        <display-name>Kylin Web Timezone</display-name>
         <value>GMT+8</value>
         <description>Display timezone on UI,format like[GMT+N or GMT-N].</description>
     </property>
 
     <property>
         <name>kylin_web_cross_domain_enabled</name>
+        <display-name>Kylin Web Cross Domain Enabled</display-name>
         <value>true</value>
         <description>Whether cross-domain access is supported, the default is TRUE</description>
     </property>
 
     <property>
         <name>kylin_env_hdfs_working_dir</name>
+        <display-name>Kylin Env HDFS Working Dir</display-name>
         <value>/kylin</value>
         <description>Whether cross-domain access is supported, the default is TRUE</description>
     </property>
 
     <property>
         <name>kylin_engine_spark_conf_spark_eventLog_dir</name>
+        <display-name>Kylin Engin Spark-Conf spark.eventLog.dir</display-name>
         <value>/kylin/spark-history</value>
         <description>Whether cross-domain access is supported, the default is TRUE</description>
     </property>
     
     <property>
         <name>kylin_engine_spark_conf_spark_history_fs_logDirectory</name>
+        <display-name>Kylin Engin Spark-Conf spark.history.fs.logDirectory</display-name>
         <value>/kylin/spark-history</value>
         <description>Whether cross-domain access is supported, the default is TRUE</description>
     </property>
 
     <property>
         <name>kylin_properties</name>
+        <display-name>Kylin Properties</display-name>
         <description>This is the template for kylin.properties file</description>
         <value>#
 # Licensed to the Apache Software Foundation (ASF) under one or more

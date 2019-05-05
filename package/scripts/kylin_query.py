@@ -86,6 +86,9 @@ class KylinQuery(Script):
              group='kylin',
              content=kylin_tomcat_context_conf)
              
+        if params.security_enabled:
+            Execute("kinit -kt {0} {1}".format(params.kylin_keytab, params.kylin_principal), user="kylin")
+            
         Execute(format("chown -R kylin:kylin {kylin_log_dir} {kylin_pid_dir}"))
         cmd = format("sh {kylin_install_dir}/bin/check-env.sh")
         Execute(cmd, user="kylin")
