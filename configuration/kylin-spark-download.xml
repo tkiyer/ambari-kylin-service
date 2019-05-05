@@ -45,7 +45,7 @@ else
     echo "No binary file found, from {{spark_download_base_url}}/spark-${spark_version}-bin-hadoop2.7.tgz start to download package to ${spark_package_dir}"
     wget {{spark_download_base_url}}/spark-${spark_version}-bin-hadoop2.7.tgz -O ${spark_package_dir}/spark-${spark_version}-bin-hadoop2.7.tgz || echo "Download spark failed"
 
-    tar -zxvf ${spark_package_dir}/spark-${spark_version}-bin-hadoop2.7.tgz  || { exit 1; }
+    tar -zxvf ${spark_package_dir}/spark-${spark_version}-bin-hadoop2.7.tgz -C ${spark_package_dir} || { exit 1; }
     mv ${spark_package_dir}/spark-${spark_version}-bin-hadoop2.7 ${spark_package_dir}/spark
 
     # Remove unused components in Spark
