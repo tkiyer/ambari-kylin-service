@@ -99,7 +99,6 @@ class KylinMaster(Script):
         cmd = format("sh {kylin_install_dir}/bin/check-env.sh")
         Execute(cmd, user="kylin")
         Execute("hadoop fs -mkdir -p /kylin/kylin_metadata", user="kylin")
-        Execute("hadoop fs -chmod -R 777 /kylin/kylin_metadata", user="kylin")
 
         Execute("hadoop fs -mkdir -p {0}".format(params.kylin_engine_spark_conf_spark_eventLog_dir), user="kylin")
         Execute("hadoop fs -mkdir -p {0}".format(params.kylin_engine_spark_conf_spark_history_fs_logDirectory), user="kylin")

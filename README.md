@@ -24,3 +24,34 @@ sudo git clone https://github.com/tkiyer/ambari-kylin-service.git /var/lib/ambar
 ```
 sudo ambari-server restart
 ```
+
+## Configure
+
+#### Create HBase Namespace
+Namespace MUST BE UPPER CASE!!!
+```
+hbase shell
+> create_namespace 'NS_KYLIN'
+``` 
+
+#### Kerberos TGT Init
+```
+[root@cdh-node-2 security]# cat init_kt.sh
+#!/bin/bash
+kinit -kt ./kylin.keytab kylin@HWINFO.COM
+```
+Use crontab every 1:00 AM init TGT
+```
+0 1 * * * kylin /home/kylin/init_kt.sh  > /tmp/kylin-ktinit.log 2>&1
+```
+
+#### Apache Ranger configure
+Generate all privileges on HDFS to kylin.    
+Generate all privileges on Hive to kylin.  
+Generate all privileges on HBase to kylin.  
+
+## !!!IMPORTANT!!!
+Every YARN node must had kylin user.
+```
+sudo groupadd kylin && sudo useradd kylin -g kylin && sudo gpasswd -a kylin hadoop
+```

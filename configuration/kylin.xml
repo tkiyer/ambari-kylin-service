@@ -174,7 +174,7 @@ kylin.web.export-allow-other=true
 #### SOURCE ###
 #
 ## Hive client, valid value [cli, beeline]
-kylin.source.hive.client=beeline
+kylin.source.hive.client=cli
 #
 ## Absolute path to beeline shell, can be set to spark beeline instead of the default hive beeline on PATH
 kylin.source.hive.beeline-shell=beeline
