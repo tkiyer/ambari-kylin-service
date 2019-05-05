@@ -7,6 +7,9 @@
 
 ## Setup
 
+#### Prepare spark package 
+Configure ***spark-2.3.2-bin-hadoop2.7.tgz*** download url. Kylin must used special spark package to RUNNING successful.
+
 #### Deploy Kylin on existing cluster
 
 - To download the kylin service folder, run below
