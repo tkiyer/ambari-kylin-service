@@ -37,24 +37,24 @@ else
     echo "Downloading spark package..."
     spark_package_dir=/tmp/spark_package
 
-    rm -rf /tmp/spark_package
-    mkdir -p -- "${spark_package_dir}" && cd -P -- "${spark_package_dir}"
+    rm -rf ${spark_package_dir}
+    mkdir -p -- "${spark_package_dir}"
 
     spark_version="2.3.2"
 
     echo "No binary file found, start to download package to ${spark_package_dir}"
-    wget {{spark_download_base_url}}/spark-${spark_version}-bin-hadoop2.7.tgz || echo "Download spark failed"
+    wget {{spark_download_base_url}}/spark-${spark_version}-bin-hadoop2.7.tgz -O ${spark_package_dir}/spark-${spark_version}-bin-hadoop2.7.tgz || echo "Download spark failed"
 
-    tar -zxvf spark-${spark_version}-bin-hadoop2.7.tgz  || { exit 1; }
-    mv spark-${spark_version}-bin-hadoop2.7 spark
+    tar -zxvf ${spark_package_dir}/spark-${spark_version}-bin-hadoop2.7.tgz  || { exit 1; }
+    mv ${spark_package_dir}/spark-${spark_version}-bin-hadoop2.7 ${spark_package_dir}/spark
 
     # Remove unused components in Spark
-    rm -rf spark/lib/spark-examples-*
-    rm -rf spark/examples
-    rm -rf spark/data
-    rm -rf spark/R
+    rm -rf ${spark_package_dir}/spark/lib/spark-examples-*
+    rm -rf ${spark_package_dir}/spark/examples
+    rm -rf ${spark_package_dir}/spark/data
+    rm -rf ${spark_package_dir}/spark/R
 
-    mv spark ${KYLIN_HOME}
+    mv ${spark_package_dir}/spark ${KYLIN_HOME}
     rm -rf ${spark_package_dir}
 fi
 ]]>
