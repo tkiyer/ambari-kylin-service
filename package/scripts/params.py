@@ -35,6 +35,8 @@ kylin_tomcat_conf = config['configurations']['kylin-tomcat']['kylin_tomcat_conf'
 
 kylin_tomcat_context_conf = config['configurations']['kylin-tomcat-context']['kylin_tomcat_context_conf']
 
+kylin_spark_download_sh = config['configurations']['kylin-spark-download']['kylin_spark_download_sh']
+
 # kylin web timezone
 kylin_web_timezone = config['configurations']['kylin']['kylin_web_timezone']
 # kylin_web_cross_domain_enabled

@@ -60,6 +60,12 @@ class KylinQuery(Script):
              group='kylin',
              content=kylin_check_env_sh)
 
+        kylin_spark_download_sh = InlineTemplate(params.kylin_spark_download_sh)
+        File(format("{kylin_install_dir}/bin/download-spark.sh"),
+             owner='kylin',
+             group='kylin',
+             content=kylin_spark_download_sh)
+
         XmlConfig(
             "kylin_hive_conf.xml",
             conf_dir=format("{kylin_install_dir}/conf"),
@@ -83,6 +89,9 @@ class KylinQuery(Script):
         Execute(format("chown -R kylin:kylin {kylin_log_dir} {kylin_pid_dir}"))
         cmd = format("sh {kylin_install_dir}/bin/check-env.sh")
         Execute(cmd, user="kylin")
+
+        # Spark download
+        Execute(format("sh {kylin_install_dir}/bin/download-spark.sh"), user="kylin")
 
     def start(self, env):
         import params

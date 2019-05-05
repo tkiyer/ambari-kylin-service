@@ -66,6 +66,12 @@ class KylinMaster(Script):
              group='kylin',
              content=kylin_check_env_sh)
         
+        kylin_spark_download_sh = InlineTemplate(params.kylin_spark_download_sh)
+        File(format("{kylin_install_dir}/bin/download-spark.sh"),
+             owner='kylin',
+             group='kylin',
+             content=kylin_spark_download_sh)
+        
         XmlConfig(
             "kylin_hive_conf.xml",
             conf_dir=format("{kylin_install_dir}/conf"),
@@ -94,6 +100,9 @@ class KylinMaster(Script):
 
         Execute("hadoop fs -mkdir -p {0}".format(params.kylin_engine_spark_conf_spark_eventLog_dir), user="kylin")
         Execute("hadoop fs -mkdir -p {0}".format(params.kylin_engine_spark_conf_spark_history_fs_logDirectory), user="kylin")
+
+        # Spark download
+        Execute(format("sh {kylin_install_dir}/bin/download-spark.sh"), user="kylin")
 
     def start(self, env):
         import params

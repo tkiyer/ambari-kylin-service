@@ -53,6 +53,7 @@
                 <config-type>kylin-hive-job</config-type>
                 <config-type>kylin-tomcat</config-type>
                 <config-type>kylin-tomcat-context</config-type>
+                <config-type>kylin-spark-download</config-type>
             </configuration-dependencies>
 
             <quickLinksConfigurations>

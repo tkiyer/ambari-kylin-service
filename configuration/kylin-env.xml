@@ -28,7 +28,7 @@
 
 KYLIN_HOME={{kylin_install_dir}}
 JAVA_HOME={{java_home}}
-SPARK_HOME=/usr/hdp/current/spark2-client
+SPARK_HOME=${KYLIN_HOME}/spark
 HIVE_CONF=/usr/hdp/current/hive-client/conf
 
 export PATH=$PATH:$JAVA_HOME/bin
